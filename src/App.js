@@ -11,6 +11,7 @@ import Container from '@material-ui/core/Container';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import orange from '@material-ui/core/colors/orange';
 import blueGrey from '@material-ui/core/colors/blueGrey';
+import grey from '@material-ui/core/colors/grey';
 
 
 function Space(props){
@@ -23,15 +24,18 @@ function Space(props){
 function App() {
 
   const Black_soft = blueGrey[900];
-  const orange_soft = orange[600];
+  const orange_soft = grey[500];
+  const black = grey[900];
+  const blanc = blueGrey[50];
+
   const theme = createMuiTheme({
     palette: {
       primary: {
-        main: Black_soft,
+        main: black,
       },
       secondary: {
-        main : orange_soft,
-      }
+        main: blanc,
+      },
     },
     typography: {
       fontFamily: "Jazz LET, fantasy",
@@ -50,7 +54,7 @@ function App() {
       <Categories/>
       <Space size={6}/>
       <Contents/>
-      <Typography component="div" style={{ backgroundColor: '#263238', height: '50vh' }}/>
+      <Typography component="div" style={{ backgroundColor: '#bdbdbd', height: '50vh' }}/>
     </Container>
   </ThemeProvider>
 </div>

@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
     maxHeight: 100+"%",
 },
   arrowCollumn : {
-    background: '#263238',
+    background: '#424242',
   }
 }));
 
@@ -35,7 +35,7 @@ export default function Presentation({position}){
           </Grid>
 
           <Grid item xs={10}>
-            <Typography component="div" style={{ backgroundColor: '#fb8c00', height: '62vh' }} >
+            <Typography component="div" style={{ backgroundColor: 'black', height: '62vh' }} >
               <img className = {classes.img} alt = "imagae présentation" src ="./image_demo.jpg" />
             </Typography>
           </Grid>

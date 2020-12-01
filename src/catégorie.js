@@ -13,7 +13,7 @@ const useStyles =  makeStyles((theme) => ({
       maxHeight: 100+"%"
     },
     categorie:{
-        maxWidth: 20+"%",
+        maxWidth: 33+"%",
         cursor: "pointer"
     },
     categories:{
@@ -31,10 +31,23 @@ export default function Categories(){
     <div ClassName = {classes.root}>
       <Typography component="div" style={{ backgroundColor: 'white', height: '10vh' }}>
         <Typography className={classes.title}>
-          <b> ~ CATEGORIES ~ </b>
+          <b>  CATEGORIES  </b>
         </Typography>
       </Typography>
-      <Grid className = {classes.categories} container justify="space-between">
+      <Grid className = {classes.categories} container justify="space-between" spacing = {0}>
+
+        <Grid className = {classes.categorie} item container direction='column'>
+          <Grid item alignItems="center">
+            <Typography component="div" style={{ backgroundColor: 'white', height: '30vh' }} >
+              <img className = {classes.img} alt = "imagae présentation" src ={categorie_caisson_de_basse} />
+            </Typography>
+          </Grid>
+          <Grid item alignItems="center">
+            <Typography className= {classes.title}  >
+              Caissons
+            </Typography>
+          </Grid>
+        </Grid>
 
         <Grid className = {classes.categorie} item container direction='column'>
           <Grid item alignItems="center">

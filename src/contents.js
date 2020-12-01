@@ -6,7 +6,7 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme) => ({
   root:{
     padding : theme.spacing(6),
-    backgroundColor : '#fb8c00',
+    backgroundColor : 'white',
   },
   searcher:{
     width : '10mv',
@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
     }
   },
   gridContainer:{
-    backgroundColor : '#fb8c00',
+
     height : theme.spacing(38)
   },
 
@@ -41,7 +41,7 @@ export default function Content(){
           <video width="100%" height="100%" controls>
               <source src="video.mp4" type="video/mp4"/>
           </video>
-        
+
       </Grid>
 
       <Grid item className = {classes.item} xs={4}>
