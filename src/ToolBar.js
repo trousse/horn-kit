@@ -1,8 +1,6 @@
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import blueGrey from '@material-ui/core/colors/blueGrey';
 import { makeStyles } from '@material-ui/core/styles';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
 import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
 import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
@@ -29,19 +27,9 @@ const useStyles = makeStyles((theme) => ({
 export default function ToolBar({position}){
 
   const classes = useStyles();
-  const Black_soft = blueGrey[900];
-  const theme = createMuiTheme({
-    palette: {
-      primary: {
-        main: Black_soft,
-      },
-    },
-  });
-
-const classe = useStyles();
 
   return(
-  <ThemeProvider theme = {theme}>
+
     <AppBar  position ={position} color = "primary">
       <Toolbar>
         <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
@@ -58,6 +46,6 @@ const classe = useStyles();
         </IconButton>
       </Toolbar>
     </AppBar>
-  </ThemeProvider>
+
   )
 }
