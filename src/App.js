@@ -28,6 +28,13 @@ function App() {
   const black = grey[900];
   const blanc = blueGrey[50];
 
+  const images = [
+      'http://musicalechoes.fr/me1/wp-content/uploads/2014/08/Samedi-0019.jpg',
+      'http://digitaljournalist.eu/OnTheRoad/wp-content/blogs.dir/1/files/gallery-bw-free-party/1734_18line.jpg',
+      'https://i.ytimg.com/vi/QP9jJpuu3_s/maxresdefault.jpg',
+      './image_demo.jpg'
+  ];
+
   const theme = createMuiTheme({
     palette: {
       primary: {
@@ -49,7 +56,7 @@ function App() {
     <CssBaseline />
     <Container maxWidth="md">
       <ToolBar position = "sticky"/>
-      <Presentation/>
+      <Presentation images = {images} interval = {4000}/>
       <Space size={6}/>
       <Categories/>
       <Space size={6}/>

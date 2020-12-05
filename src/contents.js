@@ -45,7 +45,7 @@ export default function Content(){
       </Grid>
 
       <Grid item className = {classes.item} xs={4}>
-        <Paper  elevation={5} classeName = {classes.searcher}>
+        <Paper  elevation={5} className = {classes.searcher}>
 
         </Paper>
 

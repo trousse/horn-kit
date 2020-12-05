@@ -28,7 +28,7 @@ const useStyles =  makeStyles((theme) => ({
 export default function Categories(){
   const classes = useStyles();
   return(
-    <div ClassName = {classes.root}>
+    <div className = {classes.root}>
       <Typography component="div" style={{ backgroundColor: 'white', height: '10vh' }}>
         <Typography className={classes.title}>
           <b>  CATEGORIES  </b>
