@@ -5,7 +5,7 @@ import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import IconButton from '@material-ui/core/IconButton';
 import { Component } from 'react';
 import Fade from '@material-ui/core/Fade';
-import React, { useState } from 'react';
+import React from 'react';
 
 
 
@@ -21,6 +21,7 @@ const styles = (theme) => ({
     maxWidth: 100+'%',
   },
   arrowCollumn : {
+    position: 'relative',
     background: '#424242',
   },
   containeur:{
@@ -104,7 +105,7 @@ class Presentation extends Component {
       <Grid className = {classes.containeur} container>
 
         <Grid className = {classes.arrowCollumn} item container direction="column" justify="center" xs={1}>
-            <Grid item alignItems="center">
+            <Grid item >
                 <IconButton component = "div" onClick = {(event)=>{
                   this.prepareForSlideLeft()
                   clearInterval(cycle);
@@ -116,14 +117,13 @@ class Presentation extends Component {
 
         <Grid item xs={10}>
           <div className= {classes.root}>
-            <Fade in ={fade} timeout = {{enter:1000, exit:300} }
-            unmountOnExit
-             onExited= {()=>{
-               console.log('onExited')
+            <Fade in ={fade} timeout = {{enter:250, exit:250} }
+              unmountOnExit
+              onExited= {()=>{
                this.slide()
                setTimeout(()=>{
                  this.setState({fade: true});
-               },50)
+               },10)
              }}>
               <img className = {classes.img} alt =  "presentation" src = {images[current]} />
             </Fade>
@@ -131,7 +131,7 @@ class Presentation extends Component {
         </Grid>
 
         <Grid className = {classes.arrowCollumn} item container direction="column" justify="center" xs={1}>
-            <Grid item alignItems="center">
+            <Grid item >
                 <IconButton  component = "div" onClick = {(event)=>{
 
                   this.prepareForSlideRight()

@@ -1,12 +1,12 @@
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import categorie_caisson_de_basse from "./categorie_caisson_de_basse.jpg"
+
 
 const useStyles =  makeStyles((theme) => ({
     root:{
       flexGrow : 1,
-      maxWidth : 100+"%",
+
     },
     img:{
       maxWidth: 100+"%",
@@ -25,94 +25,39 @@ const useStyles =  makeStyles((theme) => ({
     }
 }));
 
-export default function Categories(){
+export default function Categories({categories=[]}){
   const classes = useStyles();
   return(
+
     <div className = {classes.root}>
       <Typography component="div" style={{ backgroundColor: 'white', height: '10vh' }}>
         <Typography className={classes.title}>
-          <b>  CATEGORIES  </b>
+            CATEGORIES
         </Typography>
       </Typography>
+
       <Grid className = {classes.categories} container justify="space-between" spacing = {0}>
 
-        <Grid className = {classes.categorie} item container direction='column'>
-          <Grid item alignItems="center">
-            <Typography component="div" style={{ backgroundColor: 'white', height: '30vh' }} >
-              <img className = {classes.img} alt = "imagae présentation" src ={categorie_caisson_de_basse} />
-            </Typography>
-          </Grid>
-          <Grid item alignItems="center">
-            <Typography className= {classes.title}  >
-              Caissons
-            </Typography>
-          </Grid>
-        </Grid>
+      {
+      categories.map((categorie)=>{
+        return(
 
-        <Grid className = {classes.categorie} item container direction='column'>
-          <Grid item alignItems="center">
-            <Typography component="div" style={{ backgroundColor: 'white', height: '30vh' }} >
-              <img className = {classes.img} alt = "imagae présentation" src ={categorie_caisson_de_basse} />
-            </Typography>
-          </Grid>
-          <Grid item alignItems="center">
-            <Typography className= {classes.title}  >
-              Caissons
-            </Typography>
-          </Grid>
-        </Grid>
+            <Grid key = {categorie.id} className = {classes.categorie} item container direction='column'>
+              <Grid item>
+                <Typography component="div" style={{ backgroundColor: 'white', height: '30vh' }} >
+                  <img className = {classes.img} alt = "imagae présentation" src ={categorie.src} />
+                </Typography>
+              </Grid>
+              <Grid item >
+                <Typography className= {classes.title}  >
+                  {categorie.name}
+                </Typography>
+              </Grid>
+            </Grid>
 
-        <Grid className = {classes.categorie} item container direction='column'>
-          <Grid item alignItems="center">
-            <Typography component="div" style={{ backgroundColor: 'white', height: '30vh' }} >
-              <img className = {classes.img} alt = "imagae présentation" src ={categorie_caisson_de_basse} />
-            </Typography>
-          </Grid>
-          <Grid item alignItems="center">
-            <Typography className= {classes.title}  >
-              Caissons
-            </Typography>
-          </Grid>
-        </Grid>
-
-        <Grid className = {classes.categorie} item container direction='column'>
-          <Grid item alignItems="center">
-            <Typography component="div" style={{ backgroundColor: 'white', height: '30vh' }} >
-              <img className = {classes.img} alt = "imagae présentation" src ={categorie_caisson_de_basse} />
-            </Typography>
-          </Grid>
-          <Grid item alignItems="center">
-            <Typography className= {classes.title}  >
-              Caissons
-            </Typography>
-          </Grid>
-        </Grid>
-
-        <Grid className = {classes.categorie} item container direction='column'>
-          <Grid item alignItems="center">
-            <Typography component="div" style={{ backgroundColor: 'white', height: '30vh' }} >
-              <img className = {classes.img} alt = "imagae présentation" src ={categorie_caisson_de_basse} />
-            </Typography>
-          </Grid>
-          <Grid item alignItems="center">
-            <Typography className= {classes.title}  >
-              Caissons
-            </Typography>
-          </Grid>
-        </Grid>
-
-        <Grid className = {classes.categorie} item container direction='column'>
-          <Grid item alignItems="center">
-            <Typography component="div" style={{ backgroundColor: 'white', height: '30vh' }} >
-              <img className = {classes.img} alt = "imagae présentation" src ={categorie_caisson_de_basse} />
-            </Typography>
-          </Grid>
-          <Grid item alignItems="center">
-            <Typography className= {classes.title}  >
-              Caissons
-            </Typography>
-          </Grid>
-        </Grid>
+        )
+      })
+    }
 
       </Grid>
     </div>

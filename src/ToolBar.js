@@ -6,7 +6,6 @@ import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
 import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
 
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 
@@ -21,16 +20,18 @@ const useStyles = makeStyles((theme) => ({
   title: {
     flexGrow: 1,
   },
+ Container:{
+   colorPrimary: theme.palette.primary.dark
+ }
 }));
 
 
 export default function ToolBar({position}){
 
   const classes = useStyles();
-
   return(
 
-    <AppBar  position ={position} color = "primary">
+    <AppBar position ={position} color = 'primary' className = 'Container'>
       <Toolbar>
         <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
            <MenuIcon />

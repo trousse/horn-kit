@@ -1,35 +1,27 @@
 import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
+import grey from '@material-ui/core/colors/grey';
+import DocSearcher from './docSearcher.js'
 
 
 const useStyles = makeStyles((theme) => ({
-  root:{
+  root: {
     padding : theme.spacing(6),
     backgroundColor : 'white',
+    flexGrow :1,
   },
-  searcher:{
-    width : '10mv',
-    height : '13mv',
-    backgroundColor : '#263238',
-  },
-  item:{
-    display: 'flex',
-    flexWrap: 'wrap',
-    '& > *': {
-      width: 100+'%',
-      height: 100+'%',
-      background : '#455a64',
-    }
-  },
-  gridContainer:{
+
+  gridContainer: {
 
     height : theme.spacing(38)
   },
 
 }));
 
-export default function Content(){
+
+
+export default function Content(props){
+
   const classes = useStyles();
   return(
    <div className = {classes.root}>
@@ -38,16 +30,15 @@ export default function Content(){
 
       <Grid item xs = {8} >
 
-          <video width="100%" height="100%" controls>
+          <video width="100%" height="100%" autobuffer="10" controls>
               <source src="video.mp4" type="video/mp4"/>
           </video>
 
       </Grid>
 
-      <Grid item className = {classes.item} xs={4}>
-        <Paper  elevation={5} className = {classes.searcher}>
+      <Grid item xs={4}>
 
-        </Paper>
+        <DocSearcher item = {props.docSearcherProps.item} onClick = {(code)=>{props.docSearcherProps.onClick(code)}}/>
 
       </Grid>
     </Grid>
