@@ -32,9 +32,6 @@ const styles = (theme) => ({
    '&:hover': {
      backgroundColor: fade(theme.palette.common.white, 0.25),
    },
-   '&:focus': {
-     backgroundColor: fade(theme.palette.common.white, 0.25),
-   },
 
  },
 
@@ -91,6 +88,10 @@ const styles = (theme) => ({
   icons:{
     fontSize: 50,
     color: grey[200]
+  },
+
+  focused:{
+     backgroundColor:fade(theme.palette.common.white, 0.45)
   }
 
 });
@@ -140,7 +141,6 @@ componentWillReceiveProps(nextProps,nextContext){
 }
   render(){
     const {classes,item,code, loaded,onClick} = this.state;
-      console.log(item);
     return(
         <Paper  elevation={7} className = {classes.searcher}>
           <Grid container direction = 'column'  justify='center' alignItems='center' spacing={2}>
@@ -152,14 +152,15 @@ componentWillReceiveProps(nextProps,nextContext){
                     <div className={classes.search}>
                       <InputBase
                         type='number'
-                        id={index}
+                        id={index.toString()}
                         value={code[index-1]}
                         onChange = {(e)=>this.handleChange(e)}
                         classes={{
                           root: classes.inputRoot,
                           input: classes.inputInput,
+                          focused : classes.focused
                         }}
-                        inputProps={{ 'aria-label': 'search','maxLength' : 2 ,'onkeyPress': (e)=>{ alert(e.key)}}}
+                        inputProps={{ 'aria-label': 'search','maxLength' : 2, 'onKeyPress' : (e)=>{console.log(e.keyCode)} }}
                       />
                     </div>
                   </Grid>
@@ -179,12 +180,12 @@ componentWillReceiveProps(nextProps,nextContext){
                             <img className = {classes.images} src= {item.images} alt = "product not found"/>
                           </Grid>
                         <Grid item container direction = 'column' xs={4} justify = 'space-between' alignItems='center'>
-                          <Grid xs = {6}>
+                          <Grid item xs = {6}>
                             <a href={item.pdfSRC} download = 'resultat'>
                               <PictureAsPdfSharpIcon className= {classes.icons}/>
                             </a>
                           </Grid>
-                          <Grid xs= {6}>
+                          <Grid item xs= {6}>
                             <Link href={item.videoSRC}>
                               <VideoLibrarySharpIcon className= {classes.icons}/>
                             </Link>

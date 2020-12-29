@@ -17,6 +17,9 @@ import categorie_caisson_de_basse from "./categorie_caisson_de_basse.jpg";
 import lampe from './lampe.jpg';
 import caisson2 from './caisson2.jpg';
 import hautParleur from './hautParleur.jpg';
+import acessoire from './acessoire.png';
+import surMesure from './surMesure.jpg'
+
 
 function Space(props){
   const size = props.size
@@ -44,12 +47,12 @@ const items = [{ images : categorie_caisson_de_basse , videoSRC: 'https://www.yo
               { images : hautParleur , videoSRC: 'https://www.youtube.com/watch?v=-2opH8aG9Ag', code: '004' , pdfSRC: './resultat.pdf'},]
 
 const categories = [
-{src: categorie_caisson_de_basse, name: 'Sonorisation de puissance', id: 1},
-{src: categorie_caisson_de_basse, name: 'Sonorisation de salon', id: 2},
-{src: categorie_caisson_de_basse, name: 'Mise en scene', id: 3},
-{src: categorie_caisson_de_basse, name: 'Haut parleurs', id: 4},
-{src: categorie_caisson_de_basse, name: 'Accessoires', id: 5},
-{src: categorie_caisson_de_basse, name: 'Sur mesures', id: 6},
+{src: caisson2 , name: 'Sonorisation de puissance', id: 1},
+{src: categorie_caisson_de_basse , name: 'Sonorisation de salon', id: 2},
+{src: lampe, name: 'Mise en scene', id: 3},
+{src: hautParleur, name: 'Haut parleurs', id: 4},
+{src: acessoire, name: 'Accessoires', id: 5},
+{src: surMesure, name: 'Sur mesures', id: 6},
 ]
 
 const black = grey[900];
