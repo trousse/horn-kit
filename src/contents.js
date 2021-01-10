@@ -37,7 +37,7 @@ export default function Content(props){
 
       <Grid item xs={4}>
 
-        <DocSearcher item = {props.docSearcherProps.item} onClick = {(code)=>{props.docSearcherProps.onClick(code)}}/>
+        <DocSearcher size = {6} item = {props.docSearcherProps.item} onClick = {(code)=>{props.docSearcherProps.onClick(code)}}/>
 
       </Grid>
     </Grid>

@@ -21,7 +21,8 @@ const styles = (theme) => ({
     flexGrow: 1,
     height: '100%',
     display: 'flex',
-    background : grey[500]
+    background : grey[500],
+    padding : theme.spacing(1)
 
   },
 
@@ -37,7 +38,7 @@ const styles = (theme) => ({
 
  inputInput: {
      width: '100%',
-     fontSize: 35,
+     fontSize: 25,
     textAlign: 'center',
     caretColor: 'transparent',
 
@@ -46,7 +47,8 @@ const styles = (theme) => ({
   inputRoot: {
     flexGrow :1,
     width:'100%',
-    height:"80%"
+    height:"80%",
+
   },
 
   view: {
@@ -92,9 +94,14 @@ const styles = (theme) => ({
 
   focused:{
      backgroundColor:fade(theme.palette.common.white, 0.45)
+  },
+  disabled:{
+     backgroundColor: grey[400],
+     color:grey[900]
   }
 
 });
+
 
 class DocSearcher extends Component {
 
@@ -105,62 +112,121 @@ class DocSearcher extends Component {
       onClick: props.onClick,
       item: props.item,
       classes: props.classes,
-      code: [0,0,0],
+      code: ['_','_','_','_','_','_'],
       loaded : false,
+      full: false,
+      size: props.size,
     };
   }
 
-  handleChange(e){
-    let {code} = this.state;
+  backToLast(e){
+    const {code} = this.state
+    let index = e.target.id
+    let value = code[index - 2]
 
-    const index = e.target.id;
-    const prevValue = code[index-1];
-    const newValue = e.target.value;
-
-    if(newValue[0] === prevValue){
-      code[index-1] = newValue[1];
-
+    while(value == '_' && index > 1){
+        index-=1
+        value = code[index - 2]
     }
-    else if(newValue[0] === undefined){
-        code[index-1] = 0;
+    document.getElementById(index).focus()
+  }
+
+  sendClick(){
+    const {code,onClick} = this.state
+    this.setState({loaded : true});
+    onClick(code.join(''));
+  }
+
+  checkFull(){
+    const {code} = this.state
+    const full = code.find( digit => digit == '_' )
+    if(full){ this.setState({full: false}) }
+    else{this.setState({full: true})}
+  }
+
+  handleChange(e){
+    let {code, size, full} = this.state;
+    const index = e.target.id;
+    const {key,keyCode} = e;
+
+    const nextFocus = (index,size)=>{
+      if(index < size){ document.getElementById(Number(index)+1).focus() }
+    }
+    const prevFocus = (index) => {
+      if(index>1){ document.getElementById(Number(index)-1).focus() }
+    }
+    const up = (index,code) => {
+      const value = code[index-1]
+      if(Number(value)<9){ code[index-1] = Number(value) + 1 }
+      else{code[index-1] = 0}
+      this.setState({code : code})
+    }
+    const down = (index,code) => {
+      const value = code[index-1]
+      if(Number(value)>0){ code[index-1] = Number(value) - 1 }
+      else{code[index-1] = 9}
+      this.setState({code : code})
+    }
+
+    if(Number(key)){
+      code[index-1] = key
+      this.checkFull()
+      this.setState({code: code},()=>{ nextFocus(index,size) })
     }
     else{
-      code[index-1] = newValue[0];
+      switch(keyCode){
+        case 46:
+          code[index-1] = '_'
+          this.setState({code: code, full: false})
+          break
+        case 37:
+          prevFocus(index)
+          break
+        case 38:
+          up(index,code)
+          this.checkFull()
+          break
+        case 39:
+          nextFocus(index,size)
+          break
+        case 40:
+          down(index,code)
+          this.checkFull()
+          break
+        case 8:
+          code[index-1] = '_'
+          this.setState({code: code, full: false},()=>{ prevFocus(index) })
+          break
+        case 13:
+          if(full){ this.sendClick()}
+          break
+      }
     }
-      this.setState({code: code },()=>{
-        if(index < code.length){
-            let newIndex = Number(index) + 1
-            document.getElementById(newIndex).focus()
-        }
-      });
-
 
   }
 componentWillReceiveProps(nextProps,nextContext){
   this.setState({item:nextProps.item[0]})
 }
   render(){
-    const {classes,item,code, loaded,onClick} = this.state;
+    const {classes,item,code,loaded,onClick,full} = this.state;
     return(
         <Paper  elevation={7} className = {classes.searcher}>
-          <Grid container direction = 'column'  justify='center' alignItems='center' spacing={2}>
+          <Grid container direction = 'column'  justify='center' alignItems='center' spacing={3}>
 
-            <Grid  item container direction="row" alignItems= "center" justify = "center" spacing={3}>
-              {[1,2,3].map((index)=>{
+            <Grid  item container direction="row" alignItems= "center" justify = "center" spacing={0}>
+              {[1,2,3,4,5,6].map((index)=>{
                 return(
-                  <Grid key={index} item xs = {3} >
+                  <Grid key={index} item xs = {2} >
                     <div className={classes.search}>
                       <InputBase
-                        type='number'
                         id={index.toString()}
                         value={code[index-1]}
-                        onChange = {(e)=>this.handleChange(e)}
                         classes={{
                           root: classes.inputRoot,
                           input: classes.inputInput,
                           focused : classes.focused
                         }}
-                        inputProps={{ 'aria-label': 'search','maxLength' : 2, 'onKeyPress' : (e)=>{console.log(e.keyCode)} }}
+                        inputProps={{ 'aria-label': 'search','maxLength' : 2,'onClick': (e)=>{this.backToLast(e)}, 'onKeyDown' : (e)=>{this.handleChange(e)} }}
                       />
                     </div>
                   </Grid>
@@ -209,11 +275,9 @@ componentWillReceiveProps(nextProps,nextContext){
 
 
              <Grid item xs = {2} className = {classes.buttonContainer}>
-              <Button onClick = {()=>{
-                this.setState({loaded : true});
-                onClick(code.join(''));
-              }}
-                className = {classes.button} variant="outlined"  color="primary">
+              <Button disabled = {!full} onClick = {()=>{this.sendClick()}}
+                className = {classes.button} variant="outlined"  color="primary"
+                classes = {{disabled: classes.disabled}}>
                     search for doc
               </Button>
             </Grid>
