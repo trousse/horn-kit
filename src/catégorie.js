@@ -52,39 +52,38 @@ class Categories extends Component {
       classes: props.classes,
       curent: props.tree,
       path:[],
-      title:""
     };
   }
 
   handleClick(index){
     const {curent} = this.state
-    const {name,subCategories} = curent[index]
+    const next = curent.subCategories[index]
     let {path} = this.state
 
-    if(subCategories){
+    if(next.subCategories){
       path.push(curent)
-      this.setState({curent:subCategories,path:path,title:name})
+      this.setState({curent:next, path:path})
     }
     else{
-      console.log('go to ' + name)
+      console.log('go to ' + next.name)
     }
   }
 
   getBack(){
     let {path} = this.state
     const last = path.pop()
-    this.setState({curent : last , path : path})
+    this.setState({curent : last, path : path})
   }
 
   render(){
-    const {classes,curent,path,title} = this.state
+    const {classes,curent,path} = this.state
     return(
       <div className = {classes.root}>
         <Typography component="div" style={{ backgroundColor: 'white', height: '10%' }}>
           {path[0] ?(
             <div className = {classes.titleContainer}>
               <Typography component = "H3" className={classes.title}>
-                  {title}
+                  {curent.name}
               </Typography>
               <IconButton className = {classes.arrow} onClick={()=>{this.getBack()}}>
                 <ArrowBackIosIcon color ="secondary" fontSize = "large" color = "primary" classes = {{colorPrimary: 'black' }} style = {{fontSize: 45}}/>
@@ -101,7 +100,7 @@ class Categories extends Component {
         <Grid className = {classes.categories} container justify="space-around" spacing = {0}>
 
         {
-        curent.map((categorie,index)=>{
+        curent.subCategories.map((categorie,index)=>{
           return(
 
               <Grid key = {index} className = {classes.categorie} item xs = {3} container direction='column'>

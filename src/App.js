@@ -46,70 +46,27 @@ const items = [{ images : categorie_caisson_de_basse , videoSRC: 'https://www.yo
               { images : caisson2 , videoSRC: 'https://www.youtube.com/watch?v=-2opH8aG9Ag', code: '003' , pdfSRC: './resultat.pdf'},
               { images : hautParleur , videoSRC: 'https://www.youtube.com/watch?v=-2opH8aG9Ag', code: '004' , pdfSRC: './resultat.pdf'},]
 
-const categories = [
-  {src: caisson2 , name: 'Sonorisation de puissance', subCategories:[
-      {src: caisson2 , name: 'Sets complets',link:''},
-      {src: categorie_caisson_de_basse , name: 'Aigus - piézo',link:''},
-      {src: caisson2 , name: 'Mediums - Bass', link:''},
-      {src: surMesure , name: 'Pièces détachées', subCategories:[
-          {src: caisson2 , name: 'Grilles de protection',link:''},
-          {src: caisson2 , name: 'Haut-Parleurs',link:''},
-          {src: caisson2 , name: 'Platines pour connectiques',link:''},
-          {src: caisson2 , name: 'Coins & Frettes',link:''},
-          {src: caisson2 , name: 'Isolation Phonique',link:''},
-          {src: caisson2 , name: 'Peintures',link:''},
-        ]},
-    ]},
-  {src: categorie_caisson_de_basse , name: 'Sonorisation de salon', subCategories:[
-    {src: caisson2 , name: 'Enceintes Passives'},
-    {src: caisson2 , name: 'Enceintes Actives'},
-    {src: caisson2 , name: 'Enceintes Sans Fil'},
-    {src: caisson2 , name: 'Pièces Détacées',subCategories:[
-        {src: caisson2 , name: 'Amplificateur encastrable'},
-        {src: caisson2 , name: 'completer'},
-        {src: caisson2 , name: 'completer'},
-        {src: caisson2 , name: 'completer'},
-        {src: caisson2 , name: 'completer'},
-        {src: caisson2 , name: 'completer'},
+const categories = {
+  name:'categorie',
+  subCategories:[
+    {src: caisson2 , name: 'Sonorisation de puissance', subCategories:[
+        {src: caisson2 , name: 'Sets complets',link:''},
+        {src: categorie_caisson_de_basse , name: 'Aigus - piézo',link:''},
+        {src: caisson2 , name: 'Mediums - Bass', link:''},
+        {src: surMesure , name: 'Pièces détachées', subCategories:[
+            {src: caisson2 , name: 'Grilles de protection',link:''},
+            {src: caisson2 , name: 'Haut-Parleurs',link:''},
+            {src: caisson2 , name: 'Platines pour connectiques',link:''},
+            {src: caisson2 , name: 'Coins & Frettes',link:''},
+            {src: caisson2 , name: 'Isolation Phonique',link:''},
+            {src: caisson2 , name: 'Peintures',link:''},
+          ]},
       ]},
-   ]},
-  {src: lampe, name: 'Enceintes portables',subCategories:[
-      {src: caisson2 , name: 'Enceintes Vintage'},
-      {src: caisson2 , name: 'Enceintes Sac-à-Dos'},
-      {src: caisson2 , name: 'Autocollants'},
-      {src: caisson2 , name: 'pièces Détachées',subCategories:[
-          {src: caisson2 , name: 'completer'},
-          {src: caisson2 , name: 'completer'},
-      ]},
-   ]},
-  {src: hautParleur, name: 'Haut parleurs',subCategories:[
-    {src: caisson2 , name: 'Projecteurs Laser'},
-    {src: caisson2 , name: 'Pyrotechnie'},
-    {src: caisson2 , name: 'Machines à fumer',subCategories:[
-        {src: caisson2 , name: 'Electrique'},
-        {src: caisson2 , name: 'Gaz'},
-        {src: caisson2 , name: 'pièces détachées'},
-    ]},
-    {src: caisson2 , name: 'Pilotage MIDI',subCategories:[
-      {src: caisson2 , name: 'Contrôleurs MIDI'},
-      {src: caisson2 , name: 'Câbles MIDI'},
-      {src: caisson2 , name: 'Récepteurs MIDI'},
-     ]},
-   ]},
-  {src: acessoire, name: 'Câbles & connectiques',subCategories:[
-      {src: caisson2 , name: 'Cables et Embases MIDI'},
+    {src: categorie_caisson_de_basse , name: 'Sonorisation de salon', subCategories:[
+      {src: caisson2 , name: 'Enceintes Passives'},
       {src: caisson2 , name: 'Enceintes Actives'},
-   ]},
-  {src: surMesure, name: 'Pièces Détachées',subCategories:[
-      {src: caisson2 , name: 'Sonorisation de puissance', subCategories:[
-          {src: caisson2 , name: 'Grilles de protection'},
-          {src: caisson2 , name: 'Haut-Parleurs',link:''},
-          {src: caisson2 , name: 'Platines pour connectiques'},
-          {src: caisson2 , name: 'Coins & Frettes'},
-          {src: caisson2 , name: 'Isolation Phonique'},
-          {src: caisson2 , name: 'Peintures'},
-        ]},
-      {src: caisson2 , name: 'sonorisation HIFI',subCategories:[
+      {src: caisson2 , name: 'Enceintes Sans Fil'},
+      {src: caisson2 , name: 'Pièces Détacées',subCategories:[
           {src: caisson2 , name: 'Amplificateur encastrable'},
           {src: caisson2 , name: 'completer'},
           {src: caisson2 , name: 'completer'},
@@ -117,14 +74,62 @@ const categories = [
           {src: caisson2 , name: 'completer'},
           {src: caisson2 , name: 'completer'},
         ]},
-      {src: caisson2 , name: 'Encaintes Portables',subCategories:[
-          {src: caisson2 , name: 'completer'},
-          {src: caisson2 , name: 'completer'},
-      ]},
+     ]},
+    {src: lampe, name: 'Enceintes portables',subCategories:[
+        {src: caisson2 , name: 'Enceintes Vintage'},
+        {src: caisson2 , name: 'Enceintes Sac-à-Dos'},
+        {src: caisson2 , name: 'Autocollants'},
+        {src: caisson2 , name: 'pièces Détachées',subCategories:[
+            {src: caisson2 , name: 'completer'},
+            {src: caisson2 , name: 'completer'},
+        ]},
+     ]},
+    {src: hautParleur, name: 'Haut parleurs',subCategories:[
       {src: caisson2 , name: 'Projecteurs Laser'},
-      {src: caisson2 , name: 'Machines à Fumer'},
-  ]},
-]
+      {src: caisson2 , name: 'Pyrotechnie'},
+      {src: caisson2 , name: 'Machines à fumer',subCategories:[
+          {src: caisson2 , name: 'Electrique'},
+          {src: caisson2 , name: 'Gaz'},
+          {src: caisson2 , name: 'pièces détachées'},
+      ]},
+      {src: caisson2 , name: 'Pilotage MIDI',subCategories:[
+        {src: caisson2 , name: 'Contrôleurs MIDI'},
+        {src: caisson2 , name: 'Câbles MIDI'},
+        {src: caisson2 , name: 'Récepteurs MIDI'},
+       ]},
+     ]},
+    {src: acessoire, name: 'Câbles & connectiques',subCategories:[
+        {src: caisson2 , name: 'Cables et Embases MIDI'},
+        {src: caisson2 , name: 'Enceintes Actives'},
+     ]},
+    {src: surMesure, name: 'Pièces Détachées',subCategories:[
+        {src: caisson2 , name: 'Sonorisation de puissance', subCategories:[
+            {src: caisson2 , name: 'Grilles de protection'},
+            {src: caisson2 , name: 'Haut-Parleurs',link:''},
+            {src: caisson2 , name: 'Platines pour connectiques'},
+            {src: caisson2 , name: 'Coins & Frettes'},
+            {src: caisson2 , name: 'Isolation Phonique'},
+            {src: caisson2 , name: 'Peintures'},
+          ]},
+        {src: caisson2 , name: 'sonorisation HIFI',subCategories:[
+            {src: caisson2 , name: 'Amplificateur encastrable'},
+            {src: caisson2 , name: 'completer'},
+            {src: caisson2 , name: 'completer'},
+            {src: caisson2 , name: 'completer'},
+            {src: caisson2 , name: 'completer'},
+            {src: caisson2 , name: 'completer'},
+          ]},
+        {src: caisson2 , name: 'Encaintes Portables',subCategories:[
+            {src: caisson2 , name: 'completer'},
+            {src: caisson2 , name: 'completer'},
+        ]},
+        {src: caisson2 , name: 'Projecteurs Laser'},
+        {src: caisson2 , name: 'Machines à Fumer'},
+    ]},
+  ]
+}
+
+
 
 const black = grey[900];
 const blanc = blueGrey[50];
