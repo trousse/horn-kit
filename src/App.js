@@ -41,10 +41,10 @@ const images = [
     './image_demo.jpg'
 ];
 
-const items = [{ images : categorie_caisson_de_basse , videoSRC: 'https://www.youtube.com/watch?v=-2opH8aG9Ag', code: '001' , pdfSRC: './resultat.pdf'},
-              { images : lampe , videoSRC: 'https://www.youtube.com/watch?v=Jn09UdSb3aA', code: '002' , pdfSRC: './resultat.pdf'},
-              { images : caisson2 , videoSRC: 'https://www.youtube.com/watch?v=-2opH8aG9Ag', code: '003' , pdfSRC: './resultat.pdf'},
-              { images : hautParleur , videoSRC: 'https://www.youtube.com/watch?v=-2opH8aG9Ag', code: '004' , pdfSRC: './resultat.pdf'},]
+const items = [{ images : categorie_caisson_de_basse , videoSRC: 'https://www.youtube.com/watch?v=-2opH8aG9Ag', code: 'MHB001' , pdfSRC: './resultat.pdf'},
+              { images : lampe , videoSRC: 'https://www.youtube.com/watch?v=Jn09UdSb3aA', code: 'MHB002' , pdfSRC: './resultat.pdf'},
+              { images : caisson2 , videoSRC: 'https://www.youtube.com/watch?v=-2opH8aG9Ag', code: 'MHB003' , pdfSRC: './resultat.pdf'},
+              { images : hautParleur , videoSRC: 'https://www.youtube.com/watch?v=-2opH8aG9Ag', code: 'MHB004' , pdfSRC: './resultat.pdf'},]
 
 const categories = {
   name:'categorie',

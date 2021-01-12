@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { Component } from 'react';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import IconButton from '@material-ui/core/IconButton';
+import Fade from '@material-ui/core/Fade';
 
 
 const styles = (theme) => ({
@@ -52,6 +53,7 @@ class Categories extends Component {
       classes: props.classes,
       curent: props.tree,
       path:[],
+      fade: true,
     };
   }
 
@@ -71,56 +73,75 @@ class Categories extends Component {
 
   getBack(){
     let {path} = this.state
-    const last = path.pop()
-    this.setState({curent : last, path : path})
+    if(path[0]){
+      const last = path.pop()
+      this.setState({curent : last, path : path})
+    }
+  }
+
+  LastGoOf(callback){
+    this.setState({fade:false})
+      setTimeout(()=>{
+        callback()
+    },201)
   }
 
   render(){
-    const {classes,curent,path} = this.state
+    const {classes,curent,path,fade} = this.state
     return(
       <div className = {classes.root}>
-        <Typography component="div" style={{ backgroundColor: 'white', height: '10%' }}>
-          {path[0] ?(
-            <div className = {classes.titleContainer}>
-              <Typography component = "H3" className={classes.title}>
-                  {curent.name}
-              </Typography>
-              <IconButton className = {classes.arrow} onClick={()=>{this.getBack()}}>
-                <ArrowBackIosIcon color ="secondary" fontSize = "large" color = "primary" classes = {{colorPrimary: 'black' }} style = {{fontSize: 45}}/>
-              </IconButton>
-            </div>
-          ):(
-            <Typography component = "H3" className={classes.title}>
-                CATEGORIES
-            </Typography>
-          )}
+      <Fade in ={fade} timeout = {{enter:300, exit:200} }
+        unmountOnExit
+        onExited= {()=>{ this.setState({fade: true}) }}>
+        <div>
+           <Typography component="div" style={{ backgroundColor: 'white', height: '10%' }}>
+             {path[0] ?(
+               <div className = {classes.titleContainer}>
+                 <Typography component = "H3" className={classes.title}>
+                     {curent.name}
+                 </Typography>
+                 <IconButton className = {classes.arrow} onClick={() => this.LastGoOf( () => this.getBack() )}>
+                   <ArrowBackIosIcon color ="secondary" fontSize = "large" color = "primary" classes = {{colorPrimary: 'black' }} style = {{fontSize: 45}}/>
+                 </IconButton>
+               </div>
+             ):(
+               <Typography component = "H3" className={classes.title}>
+                   CATEGORIES
+               </Typography>
+             )}
 
-        </Typography>
+           </Typography>
 
-        <Grid className = {classes.categories} container justify="space-around" spacing = {0}>
+           <Grid className = {classes.categories} container justify="space-around" spacing = {0}>
 
-        {
-        curent.subCategories.map((categorie,index)=>{
-          return(
+           {
+           curent.subCategories.map((categorie,index)=>{
+             return(
 
-              <Grid key = {index} className = {classes.categorie} item xs = {3} container direction='column'>
-                <Grid item>
-                  <Typography component="div" style={{ backgroundColor: 'white', maxHeight: '10%'}} >
-                    <img className = {classes.img} alt = "image présentation" src ={categorie.src} onClick = {(e)=>{this.handleClick(index)}}/>
-                  </Typography>
-                </Grid>
-                <Grid item >
-                  <Typography className= {classes.name}  >
-                    {categorie.name}
-                  </Typography>
-                </Grid>
-              </Grid>
+                 <Grid key = {index} className = {classes.categorie} item xs = {3} container direction='column'>
+                   <Grid item>
+                     <Typography component="div" style={{ backgroundColor: 'white', maxHeight: '10%'}} >
+                       <img className = {classes.img} alt = "image présentation" src ={categorie.src} onClick = {(e) => {
+                         if(curent.subCategories[index].subCategories){ this.LastGoOf( () => this.handleClick(index) ) }
+                         else{this.handleClick(index)}
+                       }}/>
+                     </Typography>
+                   </Grid>
+                   <Grid item >
+                     <Typography className= {classes.name}  >
+                       {categorie.name}
+                     </Typography>
+                   </Grid>
+                 </Grid>
 
-          )
-        })
-      }
+             )
+           })
+         }
 
-        </Grid>
+           </Grid>
+        </div>
+       </Fade>
+
       </div>
     )
   }

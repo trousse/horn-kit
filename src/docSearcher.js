@@ -168,8 +168,13 @@ class DocSearcher extends Component {
       this.setState({code : code})
     }
 
-    if(Number(key)){
-      code[index-1] = key
+    const isLetter = (keyCode) =>{
+      const letterKeyCodes = [...Array(91).keys()].slice(65)
+      return letterKeyCodes.includes(keyCode)
+    }
+
+    if(Number(key) || isLetter(keyCode)){
+      code[index-1] = key.toUpperCase()
       this.checkFull()
       this.setState({code: code},()=>{ nextFocus(index,size) })
     }
