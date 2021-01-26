@@ -1,10 +1,10 @@
 import { Component } from 'react';
 import './App.css';
 
-import ToolBar from './ToolBar.js';
-import Presentation from './presentation.js';
-import Categories from './catégorie.js'
-import Contents from './contents.js'
+import ToolBar from './Home_Page/ToolBar.js';
+import Presentation from './Home_Page/presentation.js';
+import Categories from './Home_Page/catégorie.js'
+import Contents from './Home_Page/contents.js'
 
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
@@ -13,12 +13,13 @@ import { createMuiTheme, ThemeProvider, withStyles } from '@material-ui/core/sty
 
 import blueGrey from '@material-ui/core/colors/blueGrey';
 import grey from '@material-ui/core/colors/grey';
-import categorie_caisson_de_basse from "./categorie_caisson_de_basse.jpg";
-import lampe from './lampe.jpg';
-import caisson2 from './caisson2.jpg';
-import hautParleur from './hautParleur.jpg';
-import acessoire from './acessoire.png';
-import surMesure from './surMesure.jpg'
+
+import categorie_caisson_de_basse from "./images_rsc/categorie_caisson_de_basse.jpg";
+import lampe from './images_rsc/lampe.jpg';
+import caisson2 from './images_rsc/caisson2.jpg';
+import hautParleur from './images_rsc/hautParleur.jpg';
+import acessoire from './images_rsc/acessoire.png';
+import surMesure from './images_rsc/surMesure.jpg'
 
 
 function Space(props){
@@ -38,7 +39,6 @@ const images = [
     'http://musicalechoes.fr/me1/wp-content/uploads/2014/08/Samedi-0019.jpg',
     'http://digitaljournalist.eu/OnTheRoad/wp-content/blogs.dir/1/files/gallery-bw-free-party/1734_18line.jpg',
     'https://i.ytimg.com/vi/QP9jJpuu3_s/maxresdefault.jpg',
-    './image_demo.jpg'
 ];
 
 const items = [{ images : categorie_caisson_de_basse , videoSRC: 'https://www.youtube.com/watch?v=-2opH8aG9Ag', code: 'MHB001' , pdfSRC: './resultat.pdf'},

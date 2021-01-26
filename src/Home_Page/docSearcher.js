@@ -209,9 +209,11 @@ class DocSearcher extends Component {
     }
 
   }
-componentWillReceiveProps(nextProps,nextContext){
+
+  componentWillReceiveProps(nextProps,nextContext){
   this.setState({item:nextProps.item[0]})
 }
+
   render(){
     const {classes,item,code,loaded,onClick,full} = this.state;
     return(
